@@ -17,7 +17,7 @@ app.get("/memberships", async (req, res) => {
   const connection = await mongoClient.connect();
   const data = await connection
     .db("Project2")
-    .collection("service")
+    .collection("services")
     .find({})
     .toArray();
   res.send(data);
@@ -40,7 +40,7 @@ app.post("/memberships", async (req, res) => {
     res.send({ success: true, service: newService });
     const data = await connection
       .db("Project2")
-      .collection("service")
+      .collection("services")
       .insertOne(newService);
   }
 });
@@ -49,7 +49,7 @@ app.delete("/memberships/:id", async (req, res) => {
   const connection = await mongoClient.connect();
   const data = await connection
     .db("Project2")
-    .collection("service")
+    .collection("services")
     .deleteOne({ id: id });
   res.send(`Item with ${id} deleted`);
 });
@@ -87,5 +87,5 @@ app.post("/users", async (req, res) => {
   }
 });
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost/${port}`);
 });
