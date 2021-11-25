@@ -4,6 +4,8 @@ import express from "express";
 import dotenv from "dotenv";
 import { env } from "process";
 import joi from "joi";
+import shortUUID from "short-uuid";
+
 dotenv.config();
 const MONGO_CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING;
 const app = express();
@@ -24,16 +26,18 @@ app.get("/memberships", async (req, res) => {
 });
 
 app.post("/memberships", async (req, res) => {
-  const { id, name, price, description } = req.body;
-  const newService = { id, name, price, description };
-  const connection = await mongoClient.connect();
   const schema = joi.object({
-    id: joi.number().required(),
+    id: joi.required(),
     name: joi.string().max(50).required(),
     price: joi.number().min(1).required(),
     description: joi.string().max(500).required(),
   });
+  const id = shortUUID.generate();
+  const { name, price, description } = req.body;
+  const newService = { id, name, price, description };
+  const connection = await mongoClient.connect();
   const isValid = schema.validate(newService);
+
   if (isValid.error) {
     res.status(400).send({ error: isValid.error.details[0].message });
   } else {
@@ -45,34 +49,53 @@ app.post("/memberships", async (req, res) => {
   }
 });
 app.delete("/memberships/:id", async (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   const connection = await mongoClient.connect();
   const data = await connection
     .db("Project2")
     .collection("services")
     .deleteOne({ id: id });
-  res.send(`Item with ${id} deleted`);
+  res.send(data);
 });
-app.get("/users/:order", async (req, res) => {
+app.get("/users", async (req, res) => {
+  let nameSort = 1;
+
+  if (req.query.nameSort) {
+    nameSort = req.query.nameSort === "asc" ? 1 : -1;
+  }
   const order = Number(req.params.order);
   const connection = await mongoClient.connect();
   const data = await connection
     .db("Project2")
     .collection("users")
-    .find()
-    .sort({ name: order })
+    .aggregate([
+      {
+        $lookup: {
+          from: "services",
+          localField: "service_id",
+          foreignField: "id",
+          as: "memberships",
+        },
+      },
+      {
+        $sort: {
+          name: nameSort,
+        },
+      },
+    ])
     .toArray();
   res.send(data);
 });
 app.post("/users", async (req, res) => {
-  const { id, name, surname, email, service_id } = req.body;
+  const id = shortUUID.generate();
+  const { name, surname, email, service_id } = req.body;
   const newUser = { id, name, surname, email, service_id };
   const schema = joi.object({
-    id: joi.number().required().min(1),
+    id: joi.required(),
     name: joi.string().max(50).required(),
     surname: joi.string().max(50).required(),
     email: joi.string().email().required(),
-    service_id: joi.number().required().min(1),
+    service_id: joi.required(),
   });
   const isValid = schema.validate(newUser);
   if (isValid.error) {

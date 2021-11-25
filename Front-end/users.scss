@@ -1,0 +1,301 @@
+$main-gray: #eef2f5;
+$main-white: #fff;
+$main-purple: #687fec;
+$main-gray-dark: #a7adc5;
+$main-gray-dark-2: #66696b;
+$main-red: #f76568;
+$main-pink: #fce5e8;
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+.nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  background-color: $main-white;
+  height: 5vh;
+  column-gap: 10rem;
+  & a {
+    text-decoration: none;
+    color: $main-gray-dark;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  & a:nth-of-type(2) {
+    color: $main-purple;
+  }
+  & a:hover {
+    color: $main-purple;
+  }
+  &__link {
+    &--1 {
+      justify-self: end;
+      align-self: center;
+    }
+    &--2 {
+      justify-self: start;
+      align-self: center;
+    }
+  }
+}
+.main {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  background-color: $main-gray;
+  min-height: 100vh;
+  &__addUser {
+    background-color: $main-gray;
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    justify-content: center;
+    grid-template-rows: 5rem 1fr;
+    &__memberships {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 35%;
+      padding: 2rem;
+      &__select {
+        width: 50rem;
+        background-color: $main-white;
+        border: none;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.233);
+        height: 4rem;
+        &__label {
+          font-size: 1.6rem;
+          padding-bottom: 1rem;
+          font-weight: 700;
+        }
+      }
+    }
+    &__heading {
+      z-index: 5;
+      padding: 1rem;
+      font-size: 2.6rem;
+      font-weight: 300;
+    }
+    &__div {
+      background-color: $main-white;
+      width: 130rem;
+      height: 50rem;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.233);
+
+      &__inputs {
+        padding: 2rem;
+        display: grid;
+        &__name {
+          grid-column: 1 / 2;
+          width: 50rem;
+          height: 4rem;
+          box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.233);
+          border: none;
+          padding: 1rem;
+          &__label {
+            display: block;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+          }
+        }
+        &__surname {
+          align-self: center;
+          grid-row: 2/3;
+          grid-column: 2/ 3;
+          width: 50rem;
+          height: 4rem;
+          box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.233);
+          border: none;
+          margin-left: 1rem;
+
+          &__label {
+            margin-left: 1rem;
+            display: block;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            grid-column: 2 / 3;
+            grid-row: 1 /2;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+    &__email {
+      width: 50rem;
+      height: 4rem;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.233);
+      border: none;
+      margin-left: 1rem;
+      margin-left: 2rem;
+
+      &__label {
+        display: block;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        margin-left: 2rem;
+        font-weight: 700;
+      }
+    }
+    &__copyright {
+      font-size: 1.4rem;
+      transform: translate(-50%, -50%);
+      position: absolute;
+      top: 90%;
+      left: 50%;
+    }
+    &__btn {
+      display: flex;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      &__add {
+        background-color: $main-purple;
+        border: none;
+        border-radius: 0.5rem;
+        color: $main-white;
+        height: 4rem;
+        width: 16rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        transition: all 0.2s;
+        font-family: inherit;
+        margin: 1rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+      &__add:hover {
+        background-color: #4e68e9;
+      }
+      &__cancel {
+        margin-right: 1rem;
+        border: none;
+        background-color: $main-white;
+        font-size: 1.6rem;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      &__cancel:hover {
+        color: rgb(53, 53, 53);
+      }
+    }
+  }
+  &__div {
+    width: 130rem;
+    display: grid;
+
+    &__text {
+      padding: 3rem;
+      grid-column: 1 /2;
+
+      &__heading {
+        font-weight: 300;
+        font-size: 2.4rem;
+      }
+      &__paragraph {
+        font-size: 1.6rem;
+      }
+    }
+    &__sort {
+      grid-column: 2 / 3;
+      align-self: flex-end;
+      justify-self: start;
+      margin-left: 10rem;
+      &__text {
+        font-size: 1.6rem;
+      }
+    }
+    &__new {
+      grid-column: 3 / 4;
+      justify-self: end;
+      align-self: center;
+      &__btn {
+        background-color: $main-purple;
+        border: none;
+        border-radius: 0.5rem;
+        color: $main-white;
+        height: 4rem;
+        width: 16rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        transition: all 0.2s;
+        font-family: inherit;
+        cursor: pointer;
+      }
+      &__btn:hover {
+        background-color: #4e68e9;
+      }
+    }
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8rem;
+    width: 100%;
+    max-width: 130rem;
+    margin-top: 2rem;
+
+    &__card {
+      width: 100%;
+      height: 20rem;
+      background-color: $main-white;
+      font-size: 1.6rem;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.363);
+      &__info {
+        padding: 1rem;
+        &__membership {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+        &__email {
+          display: flex;
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+          &__info {
+          }
+          &__text {
+            color: $main-purple;
+          }
+        }
+        &__ip {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+      }
+      &__name {
+        padding: 1rem;
+        padding-bottom: 3rem;
+        color: $main-purple;
+      }
+    }
+  }
+  &__copyright {
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 5rem;
+  }
+}
+.highlited {
+  color: $main-purple;
+}
+.highlight--red {
+  font-size: 2rem;
+  color: red;
+  padding: 0.5rem;
+}

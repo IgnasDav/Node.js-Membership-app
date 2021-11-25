@@ -30,6 +30,9 @@ html {
     font-size: 1.8rem;
     font-weight: 700;
   }
+  & a:nth-of-type(1) {
+    color: $main-purple;
+  }
   & a:hover {
     color: $main-purple;
   }
@@ -51,11 +54,13 @@ html {
   flex-direction: column;
   background-color: $main-gray;
   min-height: 100vh;
+
   &__div {
     width: 130rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     &__text {
       padding: 3rem;
       &__heading {
@@ -79,6 +84,7 @@ html {
         justify-content: space-around;
         transition: all 0.2s;
         font-family: inherit;
+        cursor: pointer;
       }
       &__btn:hover {
         background-color: #4e68e9;
@@ -100,6 +106,7 @@ html {
       height: 20rem;
       display: grid;
       grid-template-rows: 60%, 40%;
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.363);
 
       &__info {
         text-align: center;
@@ -132,6 +139,7 @@ html {
         width: 100%;
         border-top: 1px solid $main-gray;
         display: grid;
+        cursor: pointer;
 
         &__btn {
           padding: 1rem;
@@ -144,6 +152,7 @@ html {
           justify-self: end;
           margin-right: 2rem;
           transition: all 0.2s;
+          cursor: pointer;
         }
         &__btn:hover {
           background-color: #ffc7cf;
@@ -151,7 +160,129 @@ html {
       }
     }
   }
+  &__copyright {
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 5rem;
+  }
 }
-.current {
-  color: $main-purple;
+.addMembership {
+  min-height: 100vh;
+  background-color: $main-gray;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-rows: 6rem 1fr;
+  padding: 2rem 5rem;
+  &__heading {
+    grid-column: 1/ 2;
+    grid-row: 1 /2;
+    z-index: 5;
+    padding-top: 1rem;
+    margin-bottom: 5rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    padding-bottom: 1rem;
+  }
+  &__main {
+    width: 130rem;
+    background-color: $main-white;
+    grid-column: 1 / 2;
+    grid-row: 2 /3;
+    height: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.363);
+    &__name {
+      padding: 2rem;
+
+      &__input {
+        width: 34rem;
+        height: 4rem;
+        border: none;
+        box-shadow: 1px 1px 3px black;
+      }
+      &__label {
+        font-size: 1.8rem;
+        padding-right: 1.5rem;
+      }
+    }
+    &__price {
+      padding: 2rem;
+
+      &__input {
+        width: 34rem;
+        height: 4rem;
+        border: none;
+        box-shadow: 1px 1px 3px black;
+        transform: translate(1%);
+      }
+      &__label {
+        font-size: 1.8rem;
+        padding-right: 1.5rem;
+      }
+    }
+    &__description {
+      margin-right: 2rem;
+      display: grid;
+      padding: 2rem;
+      transform: translate(-2.5%);
+
+      &__input {
+        grid-row: 1/2;
+        border: none;
+        box-shadow: 1px 1px 3px black;
+      }
+      &__label {
+        grid-row: 1/ 2;
+        font-size: 1.8rem;
+        padding-right: 1.5rem;
+        align-self: center;
+      }
+    }
+    &__btn {
+      display: flex;
+      padding: 2rem;
+      &__close {
+        border: none;
+        font-family: inherit;
+        font-size: 1.6rem;
+        background-color: $main-white;
+        margin-right: 2rem;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      &__close:hover {
+        color: rgb(46, 46, 46);
+      }
+      &__add {
+        background-color: $main-purple;
+        border: none;
+        border-radius: 0.5rem;
+        color: $main-white;
+        height: 4rem;
+        width: 16rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        transition: all 0.2s;
+        font-family: inherit;
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+      &__add:hover {
+        background-color: #4e68e9;
+      }
+    }
+  }
+  &__copyright {
+    position: absolute;
+    top: 90%;
+    font-size: 1.4rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    left: 50%;
+  }
 }
